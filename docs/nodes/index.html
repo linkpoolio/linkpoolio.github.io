@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Chainlink Node Design · LinkPool Docs</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Our nodes are designed to be highly available, elastic and have&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Chainlink Node Design · LinkPool Docs"/><meta property="og:type" content="website"/><meta property="og:url" content="https://docs.linkpool.io/index.html"/><meta property="og:description" content="&lt;p&gt;Our nodes are designed to be highly available, elastic and have&lt;/p&gt;
+"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.svg" alt="LinkPool Docs"/><h2 class="headerTitleWithLogo">LinkPool Docs</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/overview" target="_self">Chainlinks</a></li><li class="siteNavGroupActive"><a href="/docs/rpc_ropsten" target="_self">Ethereum RPC</a></li><li class="siteNavGroupActive"><a href="/docs/terraform" target="_self">Design</a></li><li class=""><a href="/contact" target="_self">Contact us</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Infrastructure Design</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Example Chainlinks</h3><ul><li class="navListItem"><a class="navItem" href="/docs/overview">Overview</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Ropsten</h4><ul><li class="navListItem"><a class="navItem" href="/docs/asset_price_ropsten">Asset Price</a></li><li class="navListItem"><a class="navItem" href="/docs/alpha_vantage_ropsten">Alpha Vantage</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Guides</h3><ul><li class="navListItem"><a class="navItem" href="/docs/node_rpc">Node Setup Guide (LP EaaS)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Public Ethereum RPC</h3><ul><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Ropsten</h4><ul><li class="navListItem"><a class="navItem" href="/docs/rpc_ropsten">RPC</a></li><li class="navListItem"><a class="navItem" href="/docs/websocket_ropsten">WebSocket</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Main (Foundation)</h4><ul><li class="navListItem"><a class="navItem" href="/docs/rpc_main">RPC</a></li><li class="navListItem"><a class="navItem" href="/docs/websocket_main">WebSocket</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Infrastructure Design</h3><ul><li class="navListItem"><a class="navItem" href="/docs/terraform">Use of Terraform</a></li><li class="navListItem"><a class="navItem" href="/docs/parity">Parity</a></li><li class="navListItem"><a class="navItem" href="/docs/parity_light">Parity Light (Public RPCs)</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/nodes">Chainlink Nodes</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Contract Design</h3><ul><li class="navListItem"><a class="navItem" href="/docs/contracts">Contract Source</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Chainlink Node Design</h1></header><article><div><span><p>Our nodes are designed to be highly available, elastic and have
+complete redundancy. To hit this goal, we used a mixture of container
+management services with redundant network disks and deterministically
+created instances.</p>
+<h2><a class="anchor" aria-hidden="true" id="technologies-used"></a><a href="#technologies-used" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Technologies Used</h2>
+<h3><a class="anchor" aria-hidden="true" id="cloudformation"></a><a href="#cloudformation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CloudFormation</h3>
+<p>All of the EC2 instances that run nodes are managed by Cloudformation in
+the same way as our Parity instances are. The startup configuration in
+this case manages the correct mounting of disks, dependencies and the
+relevant configuration to enable ECS agents.</p>
+<p>When a Cloudformation upgrade is started, it starts a rolling upgrade of
+each of the node instances. When a new one is created and a success code
+is received, then the oldest of the previous instances is terminated.
+When an old instance is terminated, the fail-over node will become active
+until all the instances have been upgraded. When an instance is destroyed,
+ECS already has scope of the new instance, quickly then re-creating the
+nodes on the new instance.</p>
+<p>This results in a automatic rolling upgrade process that only sees downtime
+based on how long it takes for the fail-over nodes to grab the DB and open
+the UI &amp; API.</p>
+<h3><a class="anchor" aria-hidden="true" id="aws-ecs"></a><a href="#aws-ecs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>AWS ECS</h3>
+<p><a href="https://aws.amazon.com/ecs/">ECS</a> is a proprietary container service
+developed and supported by Amazon. It draws similarities to Kubernetes,
+although better integrates with our Terraform codebase and existing
+AWS resources.</p>
+<p>In this case, ECS manages the deployment of containers on each of the
+EC2 instances. Each 'node' in the LinkPool environment consists of
+multiple containers, with those containers being placed on instances
+based on their availability zone to enable fail-over.</p>
+<p>Each LinkPool node is defined in ECS as a service with a set amount of
+tasks. The amount of tasks directly relates to the fail-over capability
+and can be increased easily. For example, we currently specify two tasks,
+giving an additional one node for fail-over.</p>
+<h3><a class="anchor" aria-hidden="true" id="network-file-storage"></a><a href="#network-file-storage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Network File Storage</h3>
+<p>We use highly redundant NFS drives to hold the database for each node.
+By using redundant networked disks, it allows for failover as the same
+disk is shared between each container for each of our nodes.</p>
+<p>The developer of BoltDB <a href="https://github.com/boltdb/bolt/issues/690#issuecomment-304382683">mentioned</a>
+that it's unsafe to use network disks. Although since BoltDB manages
+file locks, we've not seen any issues related with using network disks.
+Each lock is managed on disk, there hasn't been any DB corruption and
+no disk contention is seen.</p>
+<h2><a class="anchor" aria-hidden="true" id="specification"></a><a href="#specification" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Specification</h2>
+<p>The amount of resources given to each container instance are:</p>
+<ul>
+<li>CPU: 2048 (2 vCPU)</li>
+<li>RAM: 1GB</li>
+<li>Disk: High IO NFS Drives</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="failover"></a><a href="#failover" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Failover</h2>
+<p>Each instance is located in a different availability zone providing
+disaster recovery. Each node has its own load balancing target group
+with all of the containers in a given node registered to it.</p>
+<p>If a node is lost, then it's a matter of which node in standby acts the
+quickest to grab the DB lock. Once the DB lock is grabbed, then the
+standby node will become active and open the UI &amp; API. Once they're
+open, then the target group then routes the traffic appropriately.</p>
+<p>Since the nodes rely on high IO network disks, then no data is lost
+between the switch of active nodes.</p>
+<h2><a class="anchor" aria-hidden="true" id="healthchecks"></a><a href="#healthchecks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Healthchecks</h2>
+<p>The nodes have healthchecks at numerous levels. One of the healthchecks
+is managed by ECS, and ensures that the nodes executable is always
+actively running within each container. There is then a healthcheck at
+the load-balancer, ensuring the port for the UI &amp; API is open, managing
+which container for a node is routed to.</p>
+<h2><a class="anchor" aria-hidden="true" id="security"></a><a href="#security" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Security</h2>
+<p>The integrity of the sensitive data on each node is crucial. Each of our
+nodes will only be able to be called publicly on the service agreement
+API, allowing for new in-bound service agreements. The access to the
+nodes UI and other API endpoints is only accessible via our internal
+network.</p>
+<p>To manage secrets and sensitive data, the nodes have KMS keys that
+manage all the wallet &amp; API credentials. On-boot before becoming active,
+each container will decrypt the relevant data, use it and then remove it,
+leaving no trace of secrets on instances during operation.</p>
+<h2><a class="anchor" aria-hidden="true" id="backups"></a><a href="#backups" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Backups</h2>
+<p>All of the nodes databases and encrypted wallets are backed up on
+separate redundant network disks daily.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/parity_light"><span class="arrow-prev">← </span><span>Parity Light Design (Public RPCs)</span></a><a class="docs-next button" href="/docs/contracts"><span>Contract Source</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#technologies-used">Technologies Used</a><ul class="toc-headings"><li><a href="#cloudformation">CloudFormation</a></li><li><a href="#aws-ecs">AWS ECS</a></li><li><a href="#network-file-storage">Network File Storage</a></li></ul></li><li><a href="#specification">Specification</a></li><li><a href="#failover">Failover</a></li><li><a href="#healthchecks">Healthchecks</a></li><li><a href="#security">Security</a></li><li><a href="#backups">Backups</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo.svg" alt="LinkPool Docs" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/overview.html">Chainlinks</a><a href="/docs/en/rpc_ropsten.html">Public Ethereum RPCs</a><a href="/docs/en/terraform.html">Infrastructure Design</a></div><div><h5>Community</h5><a href="https://t.me/linkpoolio" target="_blank" rel="noreferrer noopener">Telegram</a><a href="https://twitter.com/linkpoolio" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/contact">Contact us</a><a href="https://linkpool.io">Website</a><a href="https://staking.linkpool.io">App</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2018 LinkPool</section></footer></div></body></html>
