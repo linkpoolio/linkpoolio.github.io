@@ -31,7 +31,7 @@
 This is performed by aggregating price information from multiple
 exchanges, returning a price calculated from the weighted average of
 volume on each trading pair amongst supported exchanges.</p>
-<h2><a class="anchor" aria-hidden="true" id="source-code"></a><a href="#source-code" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Source Code</h2>
+<h2><a class="anchor" aria-hidden="true" id="adaptor-source-code"></a><a href="#adaptor-source-code" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adaptor Source Code</h2>
 <ul>
 <li><a href="https://github.com/linkpoolio/asset-price-cl-ea">GitHub</a></li>
 </ul>
@@ -40,7 +40,7 @@ volume on each trading pair amongst supported exchanges.</p>
 Ropsten or you can deploy your own to use from the example repo.</p>
 <h3><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h3>
 <p><strong>Contract Address:</strong> <a href="https://ropsten.etherscan.io/address/0xdbb384b9871be341bb360a4768efa7f7872e0ee0">0xdbb384b9871be341bb360a4768efa7f7872e0ee0</a></p>
-<p>Steps to use:</p>
+<p><strong>Steps to use:</strong></p>
 <ol>
 <li>Transfer 1 LINK to the address</li>
 <li>Choose of the following methods:
@@ -67,6 +67,17 @@ as of when it was last called.</li>
 </ol>
 <p>For the BTC/USD example, three exchanges are used for a price aggregate.
 These are Coinbase Pro, HitBTC and Bitfinex.</p>
+<p><strong>Result:</strong></p>
+<pre><code class="hljs">➜  example-chainlinks <span class="hljs-string">git:</span>(master) npm run exec scripts/get_asset_price.js BTC USD -- --network ropsten
+
+&gt; example-chainlinks@<span class="hljs-number">0.0</span><span class="hljs-number">.1</span> exec <span class="hljs-regexp">/mnt/</span>d<span class="hljs-regexp">/dev/</span>example-chainlinks
+&gt; truffle exec <span class="hljs-string">"scripts/get_asset_price.js"</span> <span class="hljs-string">"BTC"</span> <span class="hljs-string">"USD"</span> <span class="hljs-string">"--network"</span> <span class="hljs-string">"ropsten"</span>
+
+Using network <span class="hljs-string">'ropsten'</span>.
+
+Pair <span class="hljs-string">hash:</span> <span class="hljs-number">0x7404e3d104ea7841c3d9e6fd20adfe99b4ad586bc08d8f3bd3afef894cf184de</span>
+Latest price <span class="hljs-keyword">for</span> BTC-<span class="hljs-string">USD:</span> <span class="hljs-number">3967.56</span>
+</code></pre>
 <p><strong>Note:</strong> There is an <a href="https://www.pivotaltracker.com/n/projects/2129823/stories/162187918">on-going issue</a>
 which is breaking <code>requestWeiPrice</code> resulting in a non-correct wei value
 being written on-chain.</p>
@@ -74,4 +85,4 @@ being written on-chain.</p>
 <p>We have a repository on GitHub that includes the <code>AssetPriceConsumer</code>
 source code for your own deployment.</p>
 <p><strong>Source Code:</strong> <a href="https://github.com/linkpoolio/example-chainlinks">GitHub (example-chainlinks)</a></p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/overview"><span class="arrow-prev">← </span><span>Overview</span></a><a class="docs-next button" href="/docs/alpha_vantage_ropsten"><span>Alpha Vantage (Ropsten)</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#source-code">Source Code</a></li><li><a href="#usage">Usage</a><ul class="toc-headings"><li><a href="#example">Example</a></li><li><a href="#deploy-your-own">Deploy your own</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo.svg" alt="LinkPool Docs" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/overview.html">Chainlinks</a><a href="/docs/en/rpc_ropsten.html">Public Ethereum RPCs</a><a href="/docs/en/terraform.html">Infrastructure Design</a></div><div><h5>Community</h5><a href="https://t.me/linkpoolio" target="_blank" rel="noreferrer noopener">Telegram</a><a href="https://twitter.com/linkpoolio" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/contact">Contact us</a><a href="https://linkpool.io">Website</a><a href="https://staking.linkpool.io">App</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2018 LinkPool</section></footer></div></body></html>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/overview"><span class="arrow-prev">← </span><span>Overview</span></a><a class="docs-next button" href="/docs/alpha_vantage_ropsten"><span>Alpha Vantage (Ropsten)</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#adaptor-source-code">Adaptor Source Code</a></li><li><a href="#usage">Usage</a><ul class="toc-headings"><li><a href="#example">Example</a></li><li><a href="#deploy-your-own">Deploy your own</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo.svg" alt="LinkPool Docs" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/overview.html">Chainlinks</a><a href="/docs/en/rpc_ropsten.html">Public Ethereum RPCs</a><a href="/docs/en/terraform.html">Infrastructure Design</a></div><div><h5>Community</h5><a href="https://t.me/linkpoolio" target="_blank" rel="noreferrer noopener">Telegram</a><a href="https://twitter.com/linkpoolio" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/contact">Contact us</a><a href="https://linkpool.io">Website</a><a href="https://staking.linkpool.io">App</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2018 LinkPool</section></footer></div></body></html>
