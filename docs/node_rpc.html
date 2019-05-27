@@ -66,11 +66,11 @@ restart Docker.</p></li>
 <code>node.env</code> and paste the following into it:</p>
 <pre><code class="hljs css language-bash">ETH_URL=wss://ropsten-rpc.linkpool.io/ws
 ROOT=/chainlink
-CHAINLINK_DEV=<span class="hljs-literal">true</span>
 LINK_CONTRACT_ADDRESS=0x20fe562d797a42dcb3399062ae9546cd06f6328
 ETH_CHAIN_ID=3
 LOG_LEVEL=debug
 CHAINLINK_TLS_PORT=0
+CHAINLINK_TLS_HOST=localhost
 </code></pre></li>
 <li><p><strong>(Windows Only)</strong> Add <code>C:</code> to your shared drives. Right click on Docker
 in the taskbar, click <code>Settings</code>. Then browse to <code>Shared Drives</code> and
