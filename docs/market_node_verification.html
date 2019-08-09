@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Node Verification · Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;For any node to be visible within the Market&#x27;s search results, it first needs to be verified on-chain. This process is&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Node Verification · Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://docs.linkpool.io/index.html"/><meta property="og:description" content="&lt;p&gt;For any node to be visible within the Market&#x27;s search results, it first needs to be verified on-chain. This process is&lt;/p&gt;
+"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.svg" alt="Documentation"/><h2 class="headerTitleWithLogo">Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/overview" target="_self">Chainlinks</a></li><li class="siteNavGroupActive"><a href="/docs/rpc_ropsten" target="_self">Ethereum RPC</a></li><li class=""><a href="/contact" target="_self">Contact us</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Market</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Market</h3><ul><li class="navListItem navListItemActive"><a class="navItem" href="/docs/market_node_verification">Node Verification</a></li><li class="navListItem"><a class="navItem" href="/docs/market_adapter_listing">Adapter Configuration</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Chainlinks</h3><ul><li class="navListItem"><a class="navItem" href="/docs/overview">Overview</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Mainnet</h4><ul><li class="navListItem"><a class="navItem" href="/docs/mainnet_node">Node</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Ropsten</h4><ul><li class="navListItem"><a class="navItem" href="/docs/generic_jobs_ropsten">Generic Jobs</a></li><li class="navListItem"><a class="navItem" href="/docs/asset_price_ropsten">Asset Price</a></li><li class="navListItem"><a class="navItem" href="/docs/alpha_vantage_ropsten">Alpha Vantage</a></li><li class="navListItem"><a class="navItem" href="/docs/api_aggregator_ropsten">API Aggregator</a></li><li class="navListItem"><a class="navItem" href="/docs/wolframalpha_ropsten">WolframAlpha Short Answers (Distance Between)</a></li><li class="navListItem"><a class="navItem" href="/docs/rapid_api_weather_ropsten">Rapid API (Weather)</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Guides</h3><ul><li class="navListItem"><a class="navItem" href="/docs/node_rpc">Node Setup Guide (LP EaaS)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Public Ethereum RPC</h3><ul><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Ropsten</h4><ul><li class="navListItem"><a class="navItem" href="/docs/rpc_ropsten">RPC</a></li><li class="navListItem"><a class="navItem" href="/docs/websocket_ropsten">WebSocket</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Main (Foundation)</h4><ul><li class="navListItem"><a class="navItem" href="/docs/rpc_main">RPC</a></li><li class="navListItem"><a class="navItem" href="/docs/websocket_main">WebSocket</a></li></ul></div></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Node Verification</h1></header><article><div><span><p>For any node to be visible within the Market's search results, it first needs to be verified on-chain. This process is
+what validates that the node you're creating is in-fact a Chainlink node and can respond to any requests correctly.</p>
+<h2><a class="anchor" aria-hidden="true" id="contracts"></a><a href="#contracts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contracts</h2>
+<p>Verification is executed via two contracts:</p>
+<ul>
+<li><a href="https://etherscan.io/address/0x1c877ba1d3b384410b61f1663ca1b8130f4ad59c">MarketDeposits</a>: This contract
+is a central depositing contract to the Market. It allows you to deposit LINK into the market for it to be spent within
+the verification process when approved by the user.</li>
+<li><a href="https://etherscan.io/address/0x6c00887f34c017aa1febb9e5Da8EF9d0Cb264C2F">OracleVerifier</a>: <code>ChainlinkClient</code>
+implementor. Creates a Chainlink request to a specified oracle, that then emits a log with the response token as fetched
+by the Chainlink node.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="fees"></a><a href="#fees" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fees</h2>
+<p>To view our fees for verification within the Market, view:
+<a href="https://market.link/fees">https://market.link/fees</a></p>
+<ul>
+<li>1 LINK is sent back to the <code>Oracle</code> contract being verified. This can be withdrawn by the Chainlink node operator.</li>
+<li>15 LINK is sent to our <a href="https://etherscan.io/address/0x182d4990bb0ff595b308b3efcb93313abad575e7">PoolOwners</a> contract.
+This contract is how LinkPool and our token holders are distributed the earned LINK from our revenue streams.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="steps-to-verify"></a><a href="#steps-to-verify" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Steps to Verify</h2>
+<p>We've spent a lot of time &amp; effort trying to make the verification process as simple as possible for people to run
+through themselves, although we understand there still could be issues.</p>
+<h3><a class="anchor" aria-hidden="true" id="deposit-link"></a><a href="#deposit-link" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Deposit LINK</h3>
+<p>Firstly, you need to deposit some LINK into the Market.</p>
+<ol>
+<li>Login to your profile</li>
+<li>Click &quot;ETH Wallet&quot; on the sidebar</li>
+<li>Ensure Metamask is installed</li>
+<li>Click Connect</li>
+<li>Make sure you have enough LINK to deposit in your wallet</li>
+<li>Click &quot;Deposit LINK&quot; and enter the amount of LINK charged as per the <a href="https://market.link/fees">fees page</a>.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="verification-process"></a><a href="#verification-process" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Verification Process</h3>
+<ol>
+<li>Click &quot;Nodes&quot; on the profile sidebar</li>
+<li>Click the node that you want to verify</li>
+<li>Click the &quot;Verification&quot; tab</li>
+<li>Create the given JSON specification on your node.
+<ul>
+<li>Log into your Chainlink node</li>
+<li>Click &quot;Jobs&quot;</li>
+<li>Create a new Job</li>
+<li>Paste the JSON as given from the Market</li>
+<li>Create it, copy the resulting ID</li>
+</ul></li>
+<li>From the ID you created in Step 4, paste that into the Node Job ID field</li>
+<li>Connect to your wallet</li>
+<li>Click the &quot;Approve Transaction&quot; button to approve the LINK fees to be spent during verification</li>
+<li>Click &quot;Send Transaction&quot;</li>
+<li>Wait a couple of minutes, and then it should complete and your node be verified!</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="common-problems"></a><a href="#common-problems" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Common Problems</h2>
+<ul>
+<li>Make sure your Chainlink node has an ETH balance.</li>
+<li>When you deploy your <code>Oracle</code> contract, ensure the <code>_link</code> token address is correct
+(0x514910771af9ca656af840dff83e8264ecf986ca).</li>
+<li>Make sure your Chainlink node has fulfillment permission within the <code>Oracle</code> contract. This can be done by calling
+function <code>setFulfillmentPermission({node_wallet}, true)</code>.</li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/market_adapter_listing"><span>Adapter Configuration</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#contracts">Contracts</a></li><li><a href="#fees">Fees</a></li><li><a href="#steps-to-verify">Steps to Verify</a><ul class="toc-headings"><li><a href="#deposit-link">Deposit LINK</a></li><li><a href="#verification-process">Verification Process</a></li></ul></li><li><a href="#common-problems">Common Problems</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo.svg" alt="Documentation" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/overview.html">Chainlinks</a><a href="/docs/en/rpc_ropsten.html">Public Ethereum RPCs</a></div><div><h5>Community</h5><a href="https://t.me/linkpoolio" target="_blank" rel="noreferrer noopener">Telegram</a><a href="https://twitter.com/linkpoolio" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/contact">Contact us</a><a href="https://linkpool.io">Website</a><a href="https://staking.linkpool.io">App</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 LinkPool</section></footer></div></body></html>
