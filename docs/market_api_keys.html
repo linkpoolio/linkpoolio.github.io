@@ -59,8 +59,12 @@
 <li>Delete the cookie: <code>rm -rf market.cookie</code></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="authenticating-with-api-keys"></a><a href="#authenticating-with-api-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Authenticating with API Keys</h2>
-<p>To authenticate using the key pair, set headers <code>x-access-key-id</code> and <code>x-secret-key</code>:
-<code>curl --fail -X GET https://market.link/v1/keys/ \ -H &quot;x-access-key-id: ${access_key_id}&quot; -H &quot;x-secret-key: ${secret_key}&quot; -H 'Content-Type: application/json'</code></p>
+<p>To authenticate using the key pair, set headers <code>x-access-key-id</code> and <code>x-secret-key</code>:</p>
+<pre><code class="hljs"><span class="hljs-attribute">curl</span> --fail -X GET https://market.link/v1/keys/ \
+-H <span class="hljs-string">"x-access-key-id: <span class="hljs-variable">${access_key_id}</span>"</span>
+-H <span class="hljs-string">"x-secret-key: <span class="hljs-variable">${secret_key}</span>"</span>
+-H <span class="hljs-string">'Content-Type: application/json'</span>
+</code></pre>
 <h2><a class="anchor" aria-hidden="true" id="deleting-an-api-key"></a><a href="#deleting-an-api-key" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Deleting an API Key</h2>
 <pre><code class="hljs">curl <span class="hljs-comment">--fail -b market.cookie -X DELETE https://market.link/v1/keys/:accessKeyId \</span>
 -H <span class="hljs-symbol">'Content</span>-<span class="hljs-keyword">Type</span>: application/json
