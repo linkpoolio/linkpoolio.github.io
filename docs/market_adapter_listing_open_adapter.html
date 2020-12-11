@@ -34,13 +34,15 @@
 <tr><th>Key</th><th>Type</th><th>Regex Validation</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td>Adapter URL</td><td>string</td><td>valid URL</td><td>The url of the adapter file in the repo. If no adapter file exists, then enter the  url of the subdirectory for the adapter</td></tr>
+<tr><td>Repository Owner</td><td>string</td><td></td><td>The name of the repo owner, exactly as it appears in GitHub.</td></tr>
+<tr><td>Repository Name</td><td>string</td><td></td><td>The name of the repo, exactly as it appears in GitHub.</td></tr>
+<tr><td>Subfolder</td><td>string</td><td></td><td>If the repo contains multiple adapters, enter the subfolder for the adapter you are adding. The subfolder should be exactly as it appears in GitHub.</td></tr>
 <tr><td>Name</td><td>string</td><td><code>^[a-zA-Z0-9_\-\.\ \+\&gt;\=]{2,50}$</code></td><td>The publicly visible name/title of the adapter when listed on the Market. This will show as the title in all pages &amp; search results.</td></tr>
 <tr><td>Description</td><td>string</td><td><code>^[a-zA-Z0-9_\-\.\ \,\!\?\+\&gt;\=]{10,480}$</code></td><td>The publicly visible description of the adapter that is shown within search results and when viewing.</td></tr>
 <tr><td>Node Identifier</td><td>string</td><td><code>^[a-zA-Z0-9_\-\.\ \+\&gt;\=]{2,50}$</code></td><td>The ID of the adapter on Chainlink nodes. This is what is used within <code>tasks</code> in a Chainlink Job Specification.</td></tr>
 <tr><td>Platforms</td><td>[]string</td><td><code>^[a-zA-Z0-9_\-\.\ \+\&gt;\=]{2,30}$</code></td><td>The list of platforms that your adapter supports. Currently only: <code>Docker</code>, <code>AWS Lambda</code>, <code>GCP Functions</code>.</td></tr>
 <tr><td>Data Sources Name</td><td>string</td><td><code>^[a-zA-Z0-9_\-\.\ \+\&gt;\=]{2,30}$</code></td><td>The name of that datasource. This is used to match any pre-existing data sources. For example, if you name your data source <code>Binance</code>, then the market will use the already preexisting data source called <code>Binance</code>.</td></tr>
-<tr><td>Data Sources URL</td><td>string</td><td>Valid URL</td><td>The URL of the datasource. We recommend this be the homepage of the service in question, or the landing page for the API documentation. Multiple datasources can be added.</td></tr>
+<tr><td>Data Sources URL</td><td>string</td><td>Valid URL</td><td>The URL of the datasource. We recommend this be the homepage of the service in question, or the landing page for the API documentation. Multiple datasources can be added.</td><td></td></tr>
 </tbody>
 </table>
 <h2><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h2>
