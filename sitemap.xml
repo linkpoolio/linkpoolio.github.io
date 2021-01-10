@@ -19,10 +19,7 @@
 <url> <loc>https://docs.linkpool.io/docs/market_node_verification</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://docs.linkpool.io/docs/market_node_verification" /> </url>
 <url> <loc>https://docs.linkpool.io/docs/node_rpc</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://docs.linkpool.io/docs/node_rpc" /> </url>
 <url> <loc>https://docs.linkpool.io/docs/nodes</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://docs.linkpool.io/docs/nodes" /> </url>
+<url> <loc>https://docs.linkpool.io/docs/public_rpc</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://docs.linkpool.io/docs/public_rpc" /> </url>
 <url> <loc>https://docs.linkpool.io/docs/rapid_api_weather_ropsten</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://docs.linkpool.io/docs/rapid_api_weather_ropsten" /> </url>
-<url> <loc>https://docs.linkpool.io/docs/rpc_main</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://docs.linkpool.io/docs/rpc_main" /> </url>
-<url> <loc>https://docs.linkpool.io/docs/rpc_ropsten</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://docs.linkpool.io/docs/rpc_ropsten" /> </url>
-<url> <loc>https://docs.linkpool.io/docs/websocket_main</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://docs.linkpool.io/docs/websocket_main" /> </url>
-<url> <loc>https://docs.linkpool.io/docs/websocket_ropsten</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://docs.linkpool.io/docs/websocket_ropsten" /> </url>
 <url> <loc>https://docs.linkpool.io/docs/wolframalpha_ropsten</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://docs.linkpool.io/docs/wolframalpha_ropsten" /> </url>
 </urlset>
