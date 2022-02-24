@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>NaaS Adapter Installation · Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;NaaS External Adapters installation requires the specification of environment variables.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="NaaS Adapter Installation · Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://docs.linkpool.io/index.html"/><meta property="og:description" content="&lt;p&gt;NaaS External Adapters installation requires the specification of environment variables.&lt;/p&gt;
+"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.svg" alt="Documentation"/><h2 class="headerTitleWithLogo">Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/overview" target="_self">Overview</a></li><li class=""><a href="mailto:contact@linkpool.io" target="_self">Contact us</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>NaaS</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">LinkPool</h3><ul><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">General</h4><ul><li class="navListItem"><a class="navItem" href="/docs/overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/general_chainlink_guide">Chainlink Guide</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Public RPCs</h4><ul><li class="navListItem"><a class="navItem" href="/docs/general_public_rpc_overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/general_public_rpc_nodes">Nodes</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">NaaS</h3><ul><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Chainlink Nodes</h4><ul><li class="navListItem"><a class="navItem" href="/docs/naas_chainlink_nodes_overview">Overview</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Adapters</h4><ul><li class="navListItem"><a class="navItem" href="/docs/naas_adapters_overview">Overview</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/naas_adapters_installation">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/naas_adapters_generic_adapters">Generic Adapters</a></li><li class="navListItem"><a class="navItem" href="/docs/naas_adapters_examples">Examples</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Market</h3><ul><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Metrics API</h4><ul><li class="navListItem"><a class="navItem" href="/docs/market_metrics_api_overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/market_metrics_api_example_queries">Example Queries</a></li><li class="navListItem"><a class="navItem" href="/docs/market_metrics_api_connect_grafana">Connect your Grafana</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Adding Adapters</h4><ul><li class="navListItem"><a class="navItem" href="/docs/market_adapter_listing_overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/market_adapter_listing_owner">Your Own Adapter</a></li><li class="navListItem"><a class="navItem" href="/docs/market_adapter_listing_open_adapter">An Open Adapter</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/market_keybase_verification">Keybase Verification</a></li><li class="navListItem"><a class="navItem" href="/docs/market_api_keys">Managing API Keys</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">NaaS Adapter Installation</h1></header><article><div><span><p>NaaS External Adapters installation requires the specification of environment variables.</p>
+<p>You may specify environment variables accordingly to the documentation per the <a href="https://github.com/smartcontractkit/external-adapters-js">Official Chainlink External Adapter Monorepo (NodeJS)</a>.</p>
+<p>In addition, you may specify environment variables specific to the external adapter itself, as follows:</p>
+<ul>
+<li><strong>Open Adapters</strong>: Please see the Adapter specific README in the <a href="https://github.com/smartcontractkit/external-adapters-js">Official Chainlink External Adapter Monorepo (NodeJS)</a>.</li>
+<li><strong>Generic Adapters</strong>: <a href="#ii-generic-adapter-environment-variables">See below</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="i-defaults"></a><a href="#i-defaults" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>I. Defaults</h2>
+<p><em>Note: Defaults are applicable for both open and generic adapters</em></p>
+<p>By default, External Adapters will present the following environment variables and values. You may add, edit or remove environment variables according to your External Adapter needs:</p>
+<table>
+<thead>
+<tr><th style="text-align:center">Name</th><th style="text-align:center">Default Value</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:center"><code>RATE_LIMIT_ENABLED</code></td><td style="text-align:center"><code>true</code></td></tr>
+<tr><td style="text-align:center"><code>RATE_LIMIT_API_TIER</code></td><td style="text-align:center"><code>free</code></td></tr>
+<tr><td style="text-align:center"><code>CACHE_ENABLED</code></td><td style="text-align:center"><code>true</code></td></tr>
+<tr><td style="text-align:center"><code>CACHE_MIN_AGE</code></td><td style="text-align:center"><code>60000</code></td></tr>
+<tr><td style="text-align:center"><code>WARMUP_ENABLED</code></td><td style="text-align:center"><code>true</code></td></tr>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="ii-generic-adapter-environment-variables"></a><a href="#ii-generic-adapter-environment-variables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>II. Generic Adapter - Environment Variables</h2>
+<p>Environment Variables are the method in which Generic Adapters are configured and installed. At minimum, adapters require a <code>GENERIC_BASE_URL</code>. Additionally, if the API being connected to requires authentication, Adapters support a variety of authentication mechanisms via configuration of environment variables, starting with <code>GENERIC_AUTH_TYPE</code>.</p>
+<table>
+<thead>
+<tr><th style="text-align:center">Required?</th><th style="text-align:center">Name</th><th style="text-align:center">Description</th><th style="text-align:center">Options</th><th style="text-align:center">Defaults to</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:center"></td><td style="text-align:center"><code>GENERIC_PREFIX</code></td><td style="text-align:center">By default, environment variables are prefixed with <code>GENERIC_</code>. Setting <code>GENERIC_PREFIX</code> overrides the default prefix. For example, <code>GENERIC_PREFIX = 'CUSTOM'</code> will set the default prefix to <code>CUSTOM_GENERIC_</code></td><td style="text-align:center"></td><td style="text-align:center"></td></tr>
+<tr><td style="text-align:center">✅</td><td style="text-align:center"><code>GENERIC_BASE_URL</code></td><td style="text-align:center">Base URL of the api (i.e., <code>https://api.example.com</code>)</td><td style="text-align:center"></td><td style="text-align:center"></td></tr>
+<tr><td style="text-align:center"></td><td style="text-align:center"><code>GENERIC_AUTH_TYPE</code></td><td style="text-align:center">The authorization type of the API. Additional environment variables may involved/required depending on its value See <a href="#b-environment-variables-per-authorization-type">Environment Variables Per Authorization Type</a></td><td style="text-align:center">See <a href="#a-supported-authorization-types">Supported Authorization Types</a></td><td style="text-align:center"><code>no_auth</code></td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="a-supported-authorization-types"></a><a href="#a-supported-authorization-types" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>A. Supported Authorization Types</h3>
+<table>
+<thead>
+<tr><th style="text-align:center">Name</th><th style="text-align:center">Value</th><th style="text-align:center">Description</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:center">API Key</td><td style="text-align:center"><code>api_key</code></td><td style="text-align:center">Either sets the authorization header: <code>&lt;Key&gt; &lt;Value&gt;</code>, or the query parameter <code>&lt;key&gt;=&lt;value&gt;</code></td></tr>
+<tr><td style="text-align:center">Basic Auth</td><td style="text-align:center"><code>basic_auth</code></td><td style="text-align:center">Sets the authorization header: <code>Basic &lt;Base64 encoded username and password&gt;</code></td></tr>
+<tr><td style="text-align:center">Bearer Token</td><td style="text-align:center"><code>bearer_token</code></td><td style="text-align:center">Sets the authorization header: <code>Bearer &lt;Your API key&gt;</code></td></tr>
+<tr><td style="text-align:center">Custom</td><td style="text-align:center"><code>custom</code></td><td style="text-align:center">Allows to set any request header, query parameter, and body</td></tr>
+<tr><td style="text-align:center">No authorization</td><td style="text-align:center"><code>no_auth</code></td><td style="text-align:center">Does not set any request header, query parameter or body</td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="b-environment-variables-per-authorization-type"></a><a href="#b-environment-variables-per-authorization-type" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B. Environment Variables Per Authorization Type</h3>
+<p>If authorization is required, additional environment variables will be required contextual to the authorization type, as follows:</p>
+<h4><a class="anchor" aria-hidden="true" id="1-api-key"></a><a href="#1-api-key" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. API Key</h4>
+<table>
+<thead>
+<tr><th style="text-align:center">Required?</th><th style="text-align:center">Name</th><th style="text-align:center">Description</th><th style="text-align:center">Options</th><th style="text-align:center">Defaults to</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:center">✅</td><td style="text-align:center"><code>GENERIC_AUTH_CREDENTIALS_KEY</code></td><td style="text-align:center">The API key name</td><td style="text-align:center"></td><td style="text-align:center"></td></tr>
+<tr><td style="text-align:center">✅</td><td style="text-align:center"><code>GENERIC_AUTH_CREDENTIALS_VALUE</code></td><td style="text-align:center">The API key value</td><td style="text-align:center"></td><td style="text-align:center"></td></tr>
+<tr><td style="text-align:center">✅</td><td style="text-align:center"><code>GENERIC_AUTH_CREDENTIALS_LOCATION</code></td><td style="text-align:center">The location of the key-value pair. <code>headers</code> sets it in the request headers, whilst <code>params</code> sets it in the request query parameters</td><td style="text-align:center"><code>headers</code> or <code>params</code></td><td style="text-align:center"></td></tr>
+</tbody>
+</table>
+<h4><a class="anchor" aria-hidden="true" id="2-basic-auth"></a><a href="#2-basic-auth" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Basic Auth</h4>
+<table>
+<thead>
+<tr><th style="text-align:center">Required?</th><th style="text-align:center">Name</th><th style="text-align:center">Description</th><th style="text-align:center">Options</th><th style="text-align:center">Defaults to</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:center">✅</td><td style="text-align:center"><code>GENERIC_AUTH_CREDENTIALS_USERNAME</code></td><td style="text-align:center">The API <code>username</code> value</td><td style="text-align:center"></td><td style="text-align:center"></td></tr>
+<tr><td style="text-align:center">✅</td><td style="text-align:center"><code>GENERIC_AUTH_CREDENTIALS_PASSWORD</code></td><td style="text-align:center">The API <code>password</code> value</td><td style="text-align:center"></td><td style="text-align:center"></td></tr>
+</tbody>
+</table>
+<h4><a class="anchor" aria-hidden="true" id="3-bearer-token"></a><a href="#3-bearer-token" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. Bearer Token</h4>
+<table>
+<thead>
+<tr><th style="text-align:center">Required?</th><th style="text-align:center">Name</th><th style="text-align:center">Description</th><th style="text-align:center">Options</th><th style="text-align:center">Defaults to</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:center">✅</td><td style="text-align:center"><code>GENERIC_AUTH_CREDENTIALS_TOKEN</code></td><td style="text-align:center">The API authentication token</td><td style="text-align:center"></td><td style="text-align:center"></td></tr>
+</tbody>
+</table>
+<h4><a class="anchor" aria-hidden="true" id="4-custom"></a><a href="#4-custom" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4. Custom</h4>
+<table>
+<thead>
+<tr><th style="text-align:center">Required?</th><th style="text-align:center">Name</th><th style="text-align:center">Description</th><th style="text-align:center">Options</th><th style="text-align:center">Defaults to</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:center"></td><td style="text-align:center"><code>GENERIC_AUTH_HEADERS</code></td><td style="text-align:center">The API authentication headers in a JSON object as string. Expected format is <code>{ &quot;header1&quot;: &quot;value1&quot;, &quot;header2&quot;: &quot;value2&quot; }</code></td><td style="text-align:center"></td><td style="text-align:center"><code>{}</code></td></tr>
+<tr><td style="text-align:center"></td><td style="text-align:center"><code>GENERIC_AUTH_PARAMS</code></td><td style="text-align:center">The API authentication query parameters in a JSON object as string. Expected format is <code>{ &quot;param1&quot;: &quot;value1&quot;, &quot;param2&quot;: &quot;value2&quot; }</code></td><td style="text-align:center"></td><td style="text-align:center"><code>{}</code></td></tr>
+<tr><td style="text-align:center"></td><td style="text-align:center"><code>GENERIC_AUTH_DATA</code></td><td style="text-align:center">The API authentication body in a JSON object as string. Expected format is <code>{ &quot;data1&quot;: &lt;value1&gt;, &quot;data2&quot;: &lt;value2&gt; }</code></td><td style="text-align:center"></td><td style="text-align:center"><code>{}</code></td></tr>
+</tbody>
+</table>
+<h4><a class="anchor" aria-hidden="true" id="5-no-authorization"></a><a href="#5-no-authorization" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5. No Authorization</h4>
+<p>N/A</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/naas_adapters_overview"><span class="arrow-prev">← </span><span class="function-name-prevnext">NaaS Adapters Overview</span></a><a class="docs-next button" href="/docs/naas_adapters_generic_adapters"><span class="function-name-prevnext">NaaS Adapters Generic Adapters</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#i-defaults">I. Defaults</a></li><li><a href="#ii-generic-adapter-environment-variables">II. Generic Adapter - Environment Variables</a><ul class="toc-headings"><li><a href="#a-supported-authorization-types">A. Supported Authorization Types</a></li><li><a href="#b-environment-variables-per-authorization-type">B. Environment Variables Per Authorization Type</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo.svg" alt="Documentation" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/overview.html">Chainlinks</a><a href="/docs/en/rpc_ropsten.html">Public Ethereum RPCs</a></div><div><h5>Community</h5><a href="https://t.me/linkpoolio" target="_blank" rel="noreferrer noopener">Telegram</a><a href="https://twitter.com/linkpoolio" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/contact">Contact us</a><a href="https://linkpool.io">Website</a><a href="https://staking.linkpool.io">App</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2022 LinkPool</section></footer></div></body></html>
